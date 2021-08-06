@@ -19,7 +19,7 @@ Linux下C++轻量级Web服务器，助力初学者快速实践网络编程，搭
 
 * 测试前确认已安装MySQL数据库
 
-    	udo apt-get update
+    	sudo apt-get update
 	sudo apt-get install mysql-server
 	sudo mysql
 	create database yourdb;
@@ -27,7 +27,7 @@ Linux下C++轻量级Web服务器，助力初学者快速实践网络编程，搭
         	username char(50) NULL,
         	passwd char(50) NULL
 	)ENGINE=InnoDB;
-	NSERT INTO user(username, passwd) VALUES('name', 'passwd');
+	INSERT INTO user(username, passwd) VALUES('name', 'passwd');
 	create user 'wen'@'localhost' identified by '123456';
 	GRANT Insert ON `yourdbname`.* TO `zhoulei`@`localhost`;``
 
@@ -39,7 +39,18 @@ Linux下C++轻量级Web服务器，助力初学者快速实践网络编程，搭
 
 	// 修改为root文件夹所在路径
     const char* doc_root="/home/qgy/TinyWebServer/root";
+* 测试
+	test.c是测试数据库是否连接成功的程序
+	运行测试需要修改test.c中相应部分：
+		mysql_real_connect(con , "localhost" , "用户名" , "密码" , "数据库名" , 3306 , NULL , 0);
+	需要编译：
+		gcc test.c -o test
+	运行test:
+		./test
 * 运行
-	. start.sh
+	. start.sh		//这是对代码进行编译
+	gcc a.c -o start	//因远程连接关闭连接会释放窗口运行的程序，所以我们创建个a.c程序，这个程序会创建个子进程
+			//由子进程去执行execl系统调用从而执行我们的服务器程序，这样关闭连接我们的服务器不被杀死
+	./a
 * 浏览器端
 	Ip:端口号
