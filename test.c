@@ -4,7 +4,6 @@
 int main()
 {
 	MYSQL *con = NULL ;
-	printf("未初始化\n") ;
 	con = mysql_init(con) ;
 	if(con == NULL) 
 	{
@@ -14,6 +13,6 @@ int main()
 	con = mysql_real_connect(con , "localhost" , "zhoulei" , "zhoulei83" , "yourdb" , 3306 , NULL , 0);
 	if(con == NULL)
 		printf("if中\n") ;
-	printf("成功\n") ;
+	printf("成功进入mysql\n") ;
 	return 0 ;
 }
